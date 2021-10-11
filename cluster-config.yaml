@@ -1,0 +1,51 @@
+Region: <YOUR AWS REGION>
+Image:
+  Os: alinux2
+HeadNode:
+  InstanceType: <YOUR INSTANCE TYPE>
+  Networking:
+    SubnetId: <SUBNET ID>
+  Ssh:
+    KeyName: <YOUR KEYNAME>
+  CustomActions:
+    OnNodeConfigured:
+      Script: s3://<YOUR BUCKET NAME>/post-action.sh
+  Iam:
+    S3Access:
+      - BucketName: <YOUR BUCKET NAME>
+        EnableWriteAccess: false
+        KeyName: post-action.sh
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: queue1
+      CapacityType: SPOT
+      Networking:
+        SubnetIds:
+          - <SUBNET ID>
+        PlacementGroup:
+          Enabled: false
+      ComputeResources:
+        - Name: <YOUR INSTANCE NAME/LABEL>
+          InstanceType: <YOUR INSTANCE TYPE>
+          MinCount: 0
+          MaxCount: 10
+          DisableSimultaneousMultithreading: true
+      CustomActions:
+        OnNodeConfigured:
+          Script: s3://<YOUR BUCKET NAME>/spot-daemon.sh
+      Iam:
+        S3Access:
+          - BucketName: <YOUR BUCKET NAME>
+            EnableWriteAccess: false
+            KeyName: spot-daemon.sh
+SharedStorage:
+  - MountDir: /efs
+    Name: efs
+    StorageType: Efs
+  - MountDir: /fsx
+    Name: fsx
+    StorageType: FsxLustre
+    FsxLustreSettings:
+      DeploymentType: SCRATCH_2
+      StorageCapacity: 1200

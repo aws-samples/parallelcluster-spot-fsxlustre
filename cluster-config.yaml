@@ -4,7 +4,7 @@ Image:
 HeadNode:
   InstanceType: <YOUR INSTANCE TYPE>
   Networking:
-    SubnetId: <SUBNET ID>
+    SubnetId: <PUBLIC SUBNET ID>
   Ssh:
     KeyName: <YOUR KEYNAME>
   CustomActions:
@@ -22,7 +22,7 @@ Scheduling:
       CapacityType: SPOT
       Networking:
         SubnetIds:
-          - <SUBNET ID>
+          - <PRIVATE SUBNET ID>
         PlacementGroup:
           Enabled: false
       ComputeResources:

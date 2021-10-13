@@ -2,7 +2,7 @@ Region: <YOUR AWS REGION>
 Image:
   Os: alinux2
 HeadNode:
-  InstanceType: <YOUR INSTANCE TYPE>
+  InstanceType: <YOUR HEADNODE INSTANCE TYPE>
   Networking:
     SubnetId: <PUBLIC SUBNET ID>
   Ssh:
@@ -26,7 +26,7 @@ Scheduling:
         PlacementGroup:
           Enabled: false
       ComputeResources:
-        - Name: <YOUR INSTANCE NAME/LABEL>
+        - Name: <YOUR COMPUTE INSTANCE NAME/LABEL>
           InstanceType: <YOUR INSTANCE TYPE>
           MinCount: 0
           MaxCount: 10

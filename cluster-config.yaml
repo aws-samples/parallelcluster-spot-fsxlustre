@@ -40,9 +40,6 @@ Scheduling:
             EnableWriteAccess: false
             KeyName: spot-daemon.sh
 SharedStorage:
-  - MountDir: /efs
-    Name: efs
-    StorageType: Efs
   - MountDir: /fsx
     Name: fsx
     StorageType: FsxLustre

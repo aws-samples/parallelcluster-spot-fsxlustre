@@ -37,6 +37,7 @@ do
     if [[ "$HTTP_CODE" -eq 401 ]] ; then
         # Refreshing Authentication Token
         TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 30")
+        continue
     elif [[ "$HTTP_CODE" -ne 200 ]] ; then
         # If the return code is not 200, the instance is not going to be interrupted
         continue
